@@ -9,12 +9,14 @@ declare module '@emotion/react' {
       borderColor: string;
       blue: string;
       contour: string;
+      red: string;
     };
     border: {
       radius: string;
     };
     size: {
-      height: number;
+      minHeight: number;
+      contentsWidth: number;
     };
   }
 }

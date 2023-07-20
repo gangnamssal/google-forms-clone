@@ -7,12 +7,14 @@ const theme: Theme = {
     borderColor: '#dadce0',
     blue: '#4285f4',
     contour: '#E0E0E0',
+    red: '#d93025',
   },
   border: {
     radius: '8px',
   },
   size: {
-    height: 136,
+    minHeight: 136,
+    contentsWidth: 92,
   },
 };
 
