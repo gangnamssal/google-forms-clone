@@ -8,6 +8,7 @@ const theme: Theme = {
     blue: '#4285f4',
     contour: '#E0E0E0',
     red: '#d93025',
+    gray: '#F8F9FA',
   },
   border: {
     radius: '8px',

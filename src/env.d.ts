@@ -10,6 +10,7 @@ declare module '@emotion/react' {
       blue: string;
       contour: string;
       red: string;
+      gray: string;
     };
     border: {
       radius: string;

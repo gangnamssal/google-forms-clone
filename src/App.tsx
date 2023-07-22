@@ -1,4 +1,4 @@
-import { Global, css, ThemeProvider, Theme } from '@emotion/react';
+import { Global, css, ThemeProvider } from '@emotion/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import theme from '@styles/theme';
@@ -12,8 +12,8 @@ function App() {
         <Global styles={globalCss.global} />
         <Router>
           <Routes>
-            <Route path="/" element={<GoogleForm />} />
-            <Route path="/preview" element={<GoogleFormPreview />} />
+            <Route path='/' element={<GoogleForm />} />
+            <Route path='/preview' element={<GoogleFormPreview />} />
           </Routes>
         </Router>
       </ThemeProvider>
@@ -24,7 +24,7 @@ function App() {
 const globalCss = {
   global: css({
     html: {
-      backgroundColor: `${(theme as Theme).colors.mauve}`,
+      backgroundColor: `${theme.colors.mauve}`,
     },
 
     body: {
