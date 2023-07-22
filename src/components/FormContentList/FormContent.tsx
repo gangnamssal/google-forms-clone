@@ -1,14 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { Theme, css, useTheme } from '@emotion/react';
 
-import ShortAndLongAnswer from '@/components/Answer/Complete/ShortAndLongAnswer';
+import BaseModifyForm from '@components/Answer/Modify/BaseModifyForm';
+import ShortAndLongAnswer from '@/components/Answer/Complete/CompleteShortAndLongAnswer';
 
 export default function FormContent() {
   const theme = useTheme();
 
   return (
     <div css={formContentCss.container(theme)}>
-      <ShortAndLongAnswer category={'장문형'} />
+      {/* <ShortAndLongAnswer category={'장문형'} /> */}
+      <BaseModifyForm />
     </div>
   );
 }

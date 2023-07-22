@@ -3,17 +3,17 @@ import { Theme, css, useTheme } from '@emotion/react';
 
 import DivLine from '@components/UI/DivLine';
 
-export default function ShortAndLongAnswer({ category }: IShortAndLongAnswer) {
+export default function CompleteShortAndLongAnswer({ category }: IShortAndLongAnswer) {
   const theme = useTheme();
 
   return (
-    <div css={completeShortAnswerCss.container(theme)}>
-      <div css={completeShortAnswerCss.questionContainer}>
-        <div css={completeShortAnswerCss.question}>질문</div>
-        <span css={completeShortAnswerCss.required(theme)}>*</span>
+    <div css={completeShortAndLongAnswerCss.container(theme)}>
+      <div css={completeShortAndLongAnswerCss.questionContainer}>
+        <div css={completeShortAndLongAnswerCss.question}>질문</div>
+        <span css={completeShortAndLongAnswerCss.required(theme)}>*</span>
       </div>
 
-      <input css={completeShortAnswerCss.answer} disabled placeholder={`${category} 텍스트`} />
+      <input css={completeShortAndLongAnswerCss.answer} disabled placeholder={`${category} 텍스트`} />
       <DivLine isActive={false} widthLength={category === '단답형' ? 50 : 80} />
     </div>
   );
@@ -23,7 +23,7 @@ interface IShortAndLongAnswer {
   category: string;
 }
 
-const completeShortAnswerCss = {
+const completeShortAndLongAnswerCss = {
   container: (theme: Theme) =>
     css({
       display: 'flex',

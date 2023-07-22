@@ -2,19 +2,19 @@
 import { css } from '@emotion/react';
 
 import FormTitle from '@components/FormTitle';
-import FormContentList from '@components/FormContentList';
+import FormContentList from '@components/FormContentList/FormContentList';
 
 export default function GoogleForm() {
   return (
-    <>
-      <section css={googleFormCss.titleSection}>
+    <section>
+      <article css={googleFormCss.titleSection}>
         <FormTitle />
-      </section>
+      </article>
 
-      <section>
+      <article>
         <FormContentList />
-      </section>
-    </>
+      </article>
+    </section>
   );
 }
 
