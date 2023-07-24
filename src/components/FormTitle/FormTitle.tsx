@@ -1,10 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Theme, css, useTheme } from '@emotion/react';
 import { useCallback, useEffect, useState } from 'react';
 
 import DivLine from '@components/UI/DivLine';
 import { setDescription, setTitle } from '@store/formTitleSlice';
+import { RootState } from '@/store/store';
 
 const isFormTitleInput = (classList: DOMTokenList) => {
   if (classList.contains('form-title-input1')) return 1;
@@ -16,6 +17,7 @@ export default function FormTitle() {
   const dispatch = useDispatch();
   const theme: Theme = useTheme();
   const [inputFocus, setInputFocus] = useState<number>(0);
+  const { title, description } = useSelector((state: RootState) => state.formTitle);
 
   const formTitleClickDetect = useCallback((e: MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -48,6 +50,7 @@ export default function FormTitle() {
             placeholder='설문지 제목'
             autoComplete='false'
             rows={1}
+            value={title}
             onChange={formTitleSaveTitle}
             css={formTitleCss.titleInput(theme)}
           />
@@ -58,6 +61,7 @@ export default function FormTitle() {
             placeholder='설문지 설명'
             autoComplete='false'
             rows={1}
+            value={description}
             onChange={formTitleSaveDescription}
             css={formTitleCss.descriptionInput(theme)}
           />
