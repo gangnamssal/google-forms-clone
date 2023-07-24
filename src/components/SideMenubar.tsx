@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { AiOutlineEye } from '@react-icons/all-files/ai/AiOutlineEye';
 import { IoIosAddCircleOutline } from '@react-icons/all-files/io/IoIosAddCircleOutline';
 
@@ -10,11 +11,12 @@ const SIZE = 25;
 
 export default function SideMenubar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div css={sideMenubarCss.container}>
       <IoIosAddCircleOutline onClick={() => dispatch(addFormList())} size={SIZE} css={sideMenubarCss.icon} />
-      <AiOutlineEye size={SIZE} css={sideMenubarCss.icon} />
+      <AiOutlineEye onClick={() => navigate('/preview')} size={SIZE} css={sideMenubarCss.icon} />
     </div>
   );
 }

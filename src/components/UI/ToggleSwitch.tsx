@@ -1,21 +1,28 @@
 /** @jsxImportSource @emotion/react */
+import { useSelector } from 'react-redux';
 import { css, Theme, useTheme } from '@emotion/react';
-import { IToggleSwitchProps } from '../Answer/Modify/BaseModifyForm';
+
+import { IToggleSwitchProps } from '@components/Answer/Modify/BaseModifyForm';
+import { RootState } from '@store/store';
 
 export default function ToggleSwitch<T extends IToggleSwitchProps>(props: T) {
   const theme = useTheme();
+  const formList = useSelector((state: RootState) => state.formList);
+  const { formListIndex } = props;
+  const { isRequired } = formList[formListIndex];
 
   return (
     <div>
       <input
         onChange={props.onChange}
         type='checkbox'
-        id={`toggle${props.formListIndex as number}`}
+        id={`toggle${props.formListIndex}`}
         hidden
+        checked={isRequired}
         css={toggleSwitchCss.toggleCheck(theme)}
       />
       <label
-        htmlFor={`toggle${props.formListIndex as number}`}
+        htmlFor={`toggle${props.formListIndex}`}
         className='toggleSwitch'
         css={toggleSwitchCss.toggleSwitch(props)}>
         <span className='toggleButton' css={toggleSwitchCss.toggleButton(props)}></span>

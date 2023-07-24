@@ -129,7 +129,7 @@ export interface IToggleSwitchProps {
   switchHeight: number;
   buttonWidth: number;
   buttonHeight: number;
-  formListIndex?: number;
+  formListIndex: number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

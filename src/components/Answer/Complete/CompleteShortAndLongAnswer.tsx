@@ -3,37 +3,40 @@ import { Theme, css, useTheme } from '@emotion/react';
 
 import DivLine from '@components/UI/DivLine';
 
-export default function CompleteShortAndLongAnswer({ category }: IShortAndLongAnswer) {
+export default function CompleteShortAndLongAnswer({ title, category, isRequired }: IShortAndLongAnswer) {
   const theme = useTheme();
 
   return (
-    <div css={completeShortAndLongAnswerCss.container(theme)}>
+    <div css={completeShortAndLongAnswerCss.container}>
       <div css={completeShortAndLongAnswerCss.questionContainer}>
-        <div css={completeShortAndLongAnswerCss.question}>질문</div>
-        <span css={completeShortAndLongAnswerCss.required(theme)}>*</span>
+        <div css={completeShortAndLongAnswerCss.question}>{title}</div>
+        <span css={completeShortAndLongAnswerCss.required(theme, isRequired)}>*</span>
       </div>
 
-      <input css={completeShortAndLongAnswerCss.answer} disabled placeholder={`${category} 텍스트`} />
-      <DivLine isActive={false} widthLength={category === '단답형' ? 50 : 80} />
+      <input css={completeShortAndLongAnswerCss.answer} placeholder='내 답변' />
+      <DivLine isActive={false} widthLength={category === '단답형' ? 50 : 100} />
     </div>
   );
 }
 
 interface IShortAndLongAnswer {
+  title: string;
   category: string;
+  isRequired: boolean;
 }
 
 const completeShortAndLongAnswerCss = {
-  container: (theme: Theme) =>
+  container: () =>
     css({
       display: 'flex',
       flexDirection: 'column',
-      width: `${theme.size.contentsWidth}%`,
+      width: `100%`,
     }),
 
   questionContainer: () =>
     css({
       display: 'flex',
+      fontWeight: '900',
     }),
 
   question: () =>
@@ -50,9 +53,9 @@ const completeShortAndLongAnswerCss = {
       lineHeight: '24px',
     }),
 
-  required: (theme: Theme) =>
+  required: (theme: Theme, isRequired: boolean) =>
     css({
-      color: `${theme.colors.red}`,
+      color: `${isRequired ? theme.colors.red : 'white'}`,
     }),
 
   answer: () =>

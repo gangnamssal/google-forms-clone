@@ -4,16 +4,23 @@ import { useSelector } from 'react-redux';
 
 import type { RootState } from '@store/store';
 import BaseModifyForm from '@components/Answer/Modify/BaseModifyForm';
+import { useLocation } from 'react-router-dom';
+import BaseCompleteForm from '../Answer/Complete/BaseCompleteForm';
 
 export default function FormContent({ formListIndex }: IFormContentProps) {
   const theme = useTheme();
+  const pathName = useLocation().pathname;
   const formList = useSelector((state: RootState) => state.formList);
   const { isModify } = formList[formListIndex];
 
   return (
     <div className='form-content' css={formContentCss.outerBox(theme)}>
       <div css={formContentCss.container(theme, isModify)}>
-        <BaseModifyForm formListIndex={formListIndex} />
+        {pathName === '/preview' ? (
+          <BaseCompleteForm formListIndex={formListIndex} />
+        ) : (
+          <BaseModifyForm formListIndex={formListIndex} />
+        )}
       </div>
     </div>
   );
