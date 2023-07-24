@@ -1,32 +1,52 @@
 /** @jsxImportSource @emotion/react */
 import { Theme, css, useTheme } from '@emotion/react';
+import { useSelector } from 'react-redux';
 
+import type { RootState } from '@store/store';
 import BaseModifyForm from '@components/Answer/Modify/BaseModifyForm';
-import ShortAndLongAnswer from '@/components/Answer/Complete/CompleteShortAndLongAnswer';
 
-export default function FormContent() {
+export default function FormContent({ formListIndex }: IFormContentProps) {
   const theme = useTheme();
+  const formList = useSelector((state: RootState) => state.formList);
+  const { isModify } = formList[formListIndex];
 
   return (
-    <div css={formContentCss.container(theme)}>
-      {/* <ShortAndLongAnswer category={'장문형'} /> */}
-      <BaseModifyForm />
+    <div className='form-content' css={formContentCss.outerBox(theme)}>
+      <div css={formContentCss.container(theme, isModify)}>
+        <BaseModifyForm formListIndex={formListIndex} />
+      </div>
     </div>
   );
 }
 
+interface IFormContentProps {
+  formListIndex: number;
+}
+
 const formContentCss = {
-  container: (theme: Theme) =>
+  outerBox: (theme: Theme) =>
+    css({
+      width: '100%',
+      minHeight: `${theme.size.minHeight}px`,
+      backgroundColor: `${theme.colors.blue}`,
+      borderRadius: `${theme.border.radius}`,
+    }),
+
+  container: (theme: Theme, isModify: boolean) =>
     css({
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
 
-      width: '100%',
+      width: `${isModify ? 'calc(100% - 6px)' : '100%'}`,
+      marginLeft: `${isModify ? '6px' : '0'}`,
       minHeight: `${theme.size.minHeight}px`,
       border: `1px solid ${theme.colors.borderColor}`,
       borderRadius: `${theme.border.radius}`,
+      borderTopLeftRadius: `${isModify ? '0' : theme.border.radius}`,
+      borderBottomLeftRadius: `${isModify ? '0' : theme.border.radius}`,
+
       backgroundColor: 'white',
       marginTop: '12px',
     }),
