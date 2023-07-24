@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import multipleSlice from '@store/multipleSlice';
+
+import formListSlice from '@store/formListSlice';
+import formTitleSlice from '@store/formTitleSlice';
 
 export const store = configureStore({
   reducer: {
-    multiple: multipleSlice,
+    formList: formListSlice,
+    formTitle: formTitleSlice,
   },
 });
 
