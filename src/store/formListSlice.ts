@@ -52,8 +52,20 @@ const formListSlice = createSlice({
     modifyFormList(_, action: PayloadAction<IFormListSliceList[]>) {
       return action.payload;
     },
+    deleteFormList() {
+      return [
+        {
+          id: Date.now(),
+          type: initialType,
+          isModify: false,
+          title: '질문',
+          question: [{ value: '옵션1' }],
+          isRequired: false,
+        },
+      ];
+    },
   },
 });
 
-export const { addFormList, modifyFormList } = formListSlice.actions;
+export const { addFormList, modifyFormList, deleteFormList } = formListSlice.actions;
 export default formListSlice.reducer;
