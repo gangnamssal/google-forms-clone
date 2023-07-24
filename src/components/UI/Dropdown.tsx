@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { Theme, css, useTheme } from '@emotion/react';
 
-export default function Dropdown() {
+export default function Dropdown({ onChange, selectNum }: IDropdownProps) {
   const theme = useTheme();
 
   return (
-    <select css={dropdownCss.dropdown(theme)}>
+    <select onChange={onChange} defaultValue={selectNum} css={dropdownCss.dropdown(theme)}>
       <option value={0}>단답형</option>
       <option value={1}>장문형</option>
       <option value={2}>객관식 질문</option>
@@ -13,6 +13,11 @@ export default function Dropdown() {
       <option value={4}>드롭다운</option>
     </select>
   );
+}
+
+interface IDropdownProps {
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectNum: number;
 }
 
 const dropdownCss = {

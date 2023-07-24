@@ -1,24 +1,27 @@
 /** @jsxImportSource @emotion/react */
 import { css, Theme, useTheme } from '@emotion/react';
+import { IToggleSwitchProps } from '../Answer/Modify/BaseModifyForm';
 
 export default function ToggleSwitch<T extends IToggleSwitchProps>(props: T) {
   const theme = useTheme();
 
   return (
     <div>
-      <input type='checkbox' id='toggle' hidden css={toggleSwitchCss.toggleCheck(theme)} />
-      <label htmlFor='toggle' className='toggleSwitch' css={toggleSwitchCss.toggleSwitch(props)}>
+      <input
+        onChange={props.onChange}
+        type='checkbox'
+        id={`toggle${props.formListIndex as number}`}
+        hidden
+        css={toggleSwitchCss.toggleCheck(theme)}
+      />
+      <label
+        htmlFor={`toggle${props.formListIndex as number}`}
+        className='toggleSwitch'
+        css={toggleSwitchCss.toggleSwitch(props)}>
         <span className='toggleButton' css={toggleSwitchCss.toggleButton(props)}></span>
       </label>
     </div>
   );
-}
-
-interface IToggleSwitchProps {
-  switchWidth: number;
-  switchHeight: number;
-  buttonWidth: number;
-  buttonHeight: number;
 }
 
 const toggleSwitchCss = {
