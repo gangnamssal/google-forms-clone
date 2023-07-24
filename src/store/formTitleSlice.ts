@@ -18,8 +18,11 @@ const formTitleSlice = createSlice({
     setDescription(state, action: PayloadAction<string>) {
       return { ...state, description: action.payload };
     },
+    deleteTitle() {
+      return { title: '설문지 제목', description: '설문지 설명' };
+    },
   },
 });
 
-export const { setTitle, setDescription } = formTitleSlice.actions;
+export const { setTitle, setDescription, deleteTitle } = formTitleSlice.actions;
 export default formTitleSlice.reducer;

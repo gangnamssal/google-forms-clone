@@ -3,26 +3,54 @@ import { useSelector } from 'react-redux';
 import { Theme, css, useTheme } from '@emotion/react';
 
 import { RootState } from '@store/store';
+import FormTitle from '@components/FormTitle/FormTitle';
 
-export default function CompleteFormTitle() {
+export default function GoogleFormComplete() {
   const theme: Theme = useTheme();
-  const { title, description } = useSelector((state: RootState) => state.formTitle);
+  const { title } = useSelector((state: RootState) => state.formTitle);
 
   return (
-    <div css={completeFormTitleCss.container(theme)}>
-      <div css={completeFormTitleCss.topLine(theme)}></div>
+    <main>
+      <div css={googleFormCss.outer}>
+        <section css={googleFormCss.section}>
+          <article css={googleFormCss.titleArticle}>
+            <div css={googleFormCss.container(theme)}>
+              <div css={googleFormCss.topLine(theme)}></div>
 
-      <div css={completeFormTitleCss.contentsBox}>
-        <div css={completeFormTitleCss.contents(theme)}>
-          <p css={completeFormTitleCss.title}>{title}</p>
-          <p css={completeFormTitleCss.description}>{description}</p>
-        </div>
+              <div css={googleFormCss.contentsBox}>
+                <div css={googleFormCss.contents(theme)}>
+                  <p css={googleFormCss.title}>{title}</p>
+                  <p css={googleFormCss.description}>응답이 기록되었습니다.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }
 
-const completeFormTitleCss = {
+const googleFormCss = {
+  outer: () =>
+    css({
+      display: 'flex',
+      width: '100%',
+      height: 'auto',
+      paddingTop: '12px',
+      paddingBottom: '12px',
+    }),
+
+  section: () =>
+    css({
+      width: '90%',
+    }),
+
+  titleArticle: () =>
+    css({
+      width: '100%',
+    }),
+
   container: (theme: Theme) =>
     css({
       width: '100%',

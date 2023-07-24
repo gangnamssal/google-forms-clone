@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import theme from '@styles/theme';
 import GoogleForm from '@pages/GoogleForm';
 import GoogleFormPreview from '@pages/GoogleFormPreview';
+import GoogleFormComplete from '@pages/GoogleFormComplete';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path='/' element={<GoogleForm />} />
             <Route path='/preview' element={<GoogleFormPreview />} />
+            <Route path='/complete' element={<GoogleFormComplete />} />
           </Routes>
         </Router>
       </ThemeProvider>

@@ -7,6 +7,7 @@ import SideMenubar from '@components/SideMenubar';
 import FormTitle from '@/components/FormTitle/FormTitle';
 import FormContentList from '@components/FormContentList/FormContentList';
 import { deleteFormList } from '@/store/formListSlice';
+import { deleteTitle } from '@/store/formTitleSlice';
 
 export default function GoogleForm() {
   const theme = useTheme();
@@ -16,6 +17,7 @@ export default function GoogleForm() {
   const deleteForm = () => {
     if (confirm('모든 질문에서 답변이 삭제되며 되돌릴 수 없습니다.')) {
       dispatch(deleteFormList());
+      dispatch(deleteTitle());
     }
   };
 
@@ -38,7 +40,7 @@ export default function GoogleForm() {
       </div>
 
       <footer css={googleFormCss.footer}>
-        <button onClick={() => navigate('/')} css={googleFormCss.submitBtn(theme)}>
+        <button onClick={() => navigate('/complete')} css={googleFormCss.submitBtn(theme)}>
           제출
         </button>
         <button onClick={deleteForm} css={googleFormCss.deleteBtn(theme)}>
