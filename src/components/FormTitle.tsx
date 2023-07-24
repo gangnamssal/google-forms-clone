@@ -1,16 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Theme, css, useTheme } from '@emotion/react';
+import { useCallback, useEffect, useState } from 'react';
 
 import DivLine from '@components/UI/DivLine';
+import { setDescription, setTitle } from '@store/formTitleSlice';
 
-const isFormTitleInput = (clasList: DOMTokenList) => {
-  if (clasList.contains('form-title-input1')) return 1;
-  else if (clasList.contains('form-title-input2')) return 2;
+const isFormTitleInput = (classList: DOMTokenList) => {
+  if (classList.contains('form-title-input1')) return 1;
+  else if (classList.contains('form-title-input2')) return 2;
   return 0;
 };
 
 export default function FormTitle() {
+  const dispatch = useDispatch();
   const theme: Theme = useTheme();
   const [inputFocus, setInputFocus] = useState<number>(0);
 
@@ -18,6 +21,16 @@ export default function FormTitle() {
     const target = e.target as HTMLElement;
     setInputFocus(isFormTitleInput(target.classList));
   }, []);
+
+  const formTitleSaveTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const inputValue = e.target.value;
+    dispatch(setTitle(inputValue));
+  };
+
+  const formTitleSaveDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const inputValue = e.target.value;
+    dispatch(setDescription(inputValue));
+  };
 
   useEffect(() => {
     window.addEventListener('click', formTitleClickDetect);
@@ -32,19 +45,21 @@ export default function FormTitle() {
         <div css={formTitleCss.contents(theme)}>
           <textarea
             className='form-title-input1'
-            css={formTitleCss.titleInput(theme)}
-            autoComplete='false'
             placeholder='설문지 제목'
+            autoComplete='false'
             rows={1}
+            onChange={formTitleSaveTitle}
+            css={formTitleCss.titleInput(theme)}
           />
           {inputFocus === 1 ? <DivLine isActive={true} /> : <DivLine isActive={false} />}
 
           <textarea
             className='form-title-input2'
-            css={formTitleCss.descriptionInput(theme)}
-            autoComplete='false'
             placeholder='설문지 설명'
+            autoComplete='false'
             rows={1}
+            onChange={formTitleSaveDescription}
+            css={formTitleCss.descriptionInput(theme)}
           />
           {inputFocus === 2 ? <DivLine isActive={true} /> : <DivLine isActive={false} />}
         </div>
@@ -85,10 +100,11 @@ const formTitleCss = {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      width: 'calc(100% - 6px)',
+      width: '100%',
       minHeight: '127px',
       backgroundColor: 'white',
       borderBottomRightRadius: `${theme.border.radius}`,
+      borderBottomLeftRadius: `${theme.border.radius}`,
     }),
 
   titleInput: (theme: Theme) =>
