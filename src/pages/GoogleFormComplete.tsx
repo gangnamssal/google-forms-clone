@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { Theme, css, useTheme } from '@emotion/react';
 
 import { RootState } from '@store/store';
-import FormTitle from '@components/FormTitle/FormTitle';
 
 export default function GoogleFormComplete() {
   const theme: Theme = useTheme();
